@@ -394,6 +394,11 @@ export const HistoryProvider: React.FC<React.PropsWithChildren> = ({
             undoData: action.undoData,
             // eslint-disable-next-line @typescript-eslint/no-explicit-any
         } as any);
+
+        const nextUndoAction = undoStack[undoStack.length - 1];
+        if (action.groupId && nextUndoAction?.groupId === action.groupId) {
+            await undo();
+        }
     };
 
     const redo = async () => {
@@ -409,6 +414,11 @@ export const HistoryProvider: React.FC<React.PropsWithChildren> = ({
             redoData: action.redoData,
             // eslint-disable-next-line @typescript-eslint/no-explicit-any
         } as any);
+
+        const nextRedoAction = redoStack[redoStack.length - 1];
+        if (action.groupId && nextRedoAction?.groupId === action.groupId) {
+            await redo();
+        }
     };
 
     return (

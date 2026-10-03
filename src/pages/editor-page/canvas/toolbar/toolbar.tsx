@@ -26,6 +26,7 @@ import { useCanvas } from '@/hooks/use-canvas';
 import { cn } from '@/lib/utils';
 import { useDiagramFilter } from '@/context/diagram-filter-context/use-diagram-filter';
 import { useAlert } from '@/context/alert-context/alert-context';
+import { RelationshipTools } from '../relationship-tools/relationship-tools';
 
 const convertToPercentage = (value: number) => `${Math.round(value * 100)}%`;
 
@@ -91,6 +92,7 @@ export const Toolbar: React.FC<ToolbarProps> = ({ readonly }) => {
         <div className="px-1">
             <Card className="h-[44px] bg-secondary p-0 shadow-none">
                 <CardContent className="flex h-full flex-row items-center p-1">
+                    {!readonly ? <RelationshipTools /> : null}
                     <Tooltip>
                         <TooltipTrigger asChild>
                             <span>

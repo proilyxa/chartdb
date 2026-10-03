@@ -15,6 +15,8 @@ type RedoUndoActionBase<T extends Action, RD, UD> = {
     action: T;
     redoData: RD;
     undoData: UD;
+    // Adjacent actions sharing a groupId are undone/redone together
+    groupId?: string;
 };
 
 type RedoUndoActionUpdateDiagramName = RedoUndoActionBase<
